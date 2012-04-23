@@ -33,7 +33,7 @@ public class BrightnessController implements ToggleSlider.Listener {
 
     // Backlight range is from 0 - 255. Need to make sure that user
     // doesn't set the backlight to 0 and get stuck
-    private static final int MINIMUM_BACKLIGHT = android.os.Power.BRIGHTNESS_DIM + 10;
+    private int MINIMUM_BACKLIGHT;
     private static final int MAXIMUM_BACKLIGHT = android.os.Power.BRIGHTNESS_ON;
 
     private Context mContext;
@@ -43,6 +43,9 @@ public class BrightnessController implements ToggleSlider.Listener {
     public BrightnessController(Context context, ToggleSlider control) {
         mContext = context;
         mControl = control;
+
+        MINIMUM_BACKLIGHT = mContext.getResources().getInteger(
+            com.android.internal.R.integer.config_screenBrightnessDim);
 
         boolean automaticAvailable = context.getResources().getBoolean(
                 com.android.internal.R.bool.config_automatic_brightness_available);
