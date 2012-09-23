@@ -65,6 +65,9 @@ namespace android {
 // Maximum number of slots supported when using the slot-based Multitouch Protocol B.
 static const size_t MAX_SLOTS = 32;
 
+// --- TPT Global vars ---
+int touch_screen_disabled = 0;
+
 // --- Static Functions ---
 
 template<typename T>
@@ -2071,6 +2074,18 @@ void KeyboardInputMapper::process(const RawEvent* rawEvent) {
         int32_t scanCode = rawEvent->code;
         int32_t usageCode = mCurrentHidUsage;
         mCurrentHidUsage = 0;
+
+	//TPT
+	if (rawEvent->code == 0x00d4 && rawEvent->value==0x00000001) {
+		if(touch_screen_disabled) {
+		     touch_screen_disabled = 0;
+		     ALOGD("TouchScreenDisabled enabled: %d",touch_screen_disabled);
+		} else {
+                     touch_screen_disabled = 1;
+		     ALOGD("TouchScreenDisabled disabled: %d",touch_screen_disabled);
+		}
+	}
+	//TPT End
 
         if (isKeyboardOrGamepadKey(scanCode)) {
             int32_t keyCode;
@@ -5856,6 +5871,10 @@ void MultiTouchInputMapper::reset(nsecs_t when) {
 
 void MultiTouchInputMapper::process(const RawEvent* rawEvent) {
     TouchInputMapper::process(rawEvent);
+
+    //TPT
+    if(touch_screen_disabled) return;
+    //TPT End
 
     mMultiTouchMotionAccumulator.process(rawEvent);
 }
