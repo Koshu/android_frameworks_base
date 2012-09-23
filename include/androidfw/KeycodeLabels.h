@@ -251,7 +251,10 @@ static const KeycodeLabel KEYCODES[] = {
     { "BRIGHTNESS_UP", 224 },
     { "BRIGHTNESS_AUTO", 225 },
     { "SCREENSHOT", 226 },
-
+    //TPT start
+    { "AUTO_ROTATION", 227},
+    { "TOUCH_DISABLER", 228},
+    //TPT end
     // NOTE: If you add a new keycode here you must also add it to several other files.
     //       Refer to frameworks/base/core/java/android/view/KeyEvent.java for the full list.
 

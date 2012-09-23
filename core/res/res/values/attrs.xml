@@ -1537,6 +1537,10 @@
         <enum name="KEYCODE_BRIGHTNESS_UP" value="224" />
         <enum name="KEYCODE_BRIGHTNESS_AUTO" value="225" />
         <enum name="KEYCODE_SCREENSHOT" value="226" />
+	<!--TPT start-->
+	<enum name="KEYCODE_AUTO_ROTATION" value="227" />
+	<enum name="KEYCODE_TOUCH_DISABLER" value="228" />
+	<!--TPT end-->
     </attr>
 
     <!-- ***************************************************************** -->

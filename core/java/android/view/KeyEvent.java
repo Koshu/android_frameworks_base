@@ -638,8 +638,13 @@ public class KeyEvent extends InputEvent implements Parcelable {
     public static final int KEYCODE_BRIGHTNESS_AUTO = 225;
     /** @hide */
     public static final int KEYCODE_SCREENSHOT      = 226;
+    
+    //TPT START
+    public static final int KEYCODE_AUTO_ROTATION   = 227;
+    public static final int KEYCODE_TOUCH_DISABLER  = 228;
 
-    private static final int LAST_KEYCODE           = KEYCODE_SCREENSHOT;
+    private static final int LAST_KEYCODE           = KEYCODE_TOUCH_DISABLER;
+    //TPT END
 
     // NOTE: If you add a new keycode here you must also add it to:
     //  isSystem()
@@ -888,6 +893,10 @@ public class KeyEvent extends InputEvent implements Parcelable {
         names.append(KEYCODE_BRIGHTNESS_UP, "KEYCODE_BRIGHTNESS_UP");
         names.append(KEYCODE_BRIGHTNESS_AUTO, "KEYCODE_BRIGHTNESS_AUTO");
         names.append(KEYCODE_SCREENSHOT, "KEYCODE_SCREENSHOT");
+//TPT start
+        names.append(KEYCODE_AUTO_ROTATION, "KEYCODE_AUTO_ROTATION");
+        names.append(KEYCODE_TOUCH_DISABLER, "KEYCODE_TOUCH_DISABLER");
+//TPT end
     };
 
     // Symbolic names of all metakeys in bit order from least significant to most significant.
