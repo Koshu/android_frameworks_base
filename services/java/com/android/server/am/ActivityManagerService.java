@@ -5348,7 +5348,7 @@ public final class ActivityManagerService extends ActivityManagerNative
                 }
             }
             if (pi == null) {
-                Slog.w(TAG, "No content provider found for permission revoke: "
+                Slog.w(TAG, "No content provider found for permission revoke: " 
                         + uri.toSafeString());
                 return;
             }
