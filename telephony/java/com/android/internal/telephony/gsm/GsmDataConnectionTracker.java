@@ -595,6 +595,8 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
     }
 
     private boolean isDataAllowed(ApnContext apnContext) {
+	if (DBG) log ("isDataAllowed: apnContext = " + apnContext.isReady());
+	if (DBG) log ("isDataAllowed: isDataAllowed" + isDataAllowed());
         return apnContext.isReady() && isDataAllowed();
     }
 
@@ -756,10 +758,10 @@ public final class GsmDataConnectionTracker extends DataConnectionTracker {
         }
 
         boolean desiredPowerState = mPhone.getServiceStateTracker().getDesiredPowerState();
-
-        if ((apnContext.getState() == State.IDLE || apnContext.getState() == State.SCANNING) &&
-                isDataAllowed(apnContext) && getAnyDataEnabled() && !isEmergency()) {
-
+//TPT start
+        if ((apnContext.getState() == State.IDLE || apnContext.getState() == State.SCANNING) &&   
+                !isEmergency()) {
+//TPT end
             if (apnContext.getState() == State.IDLE) {
                 ArrayList<ApnSetting> waitingApns = buildWaitingApns(apnContext.getApnType());
                 if (waitingApns.isEmpty()) {
