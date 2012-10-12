@@ -2372,9 +2372,23 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 showToast("Auto Rotation Toggle Error");
                 Log.w(TAG, "Unable to save auto-rotate setting");
             }
-        } else if (keyCode == KeyEvent.KEYCODE_TOUCH_DISABLER && down) {	
-		showToast("Touchscreen Toggled");	
-	}//TPT End
+        } else if (keyCode == KeyEvent.KEYCODE_TOUCH_DISABLER && down) {
+            if(SystemProperties.getInt("touch.enable", 1) == 1) {
+                try {
+                    Runtime.getRuntime().exec("tpt-touch-enabler 0");
+                } catch(Exception d) {
+                    Log.w(TAG, "Unable to disable Touch: "+d.getMessage());
+                }
+                showToast("Touchscreen Disabled");
+            } else {
+                try {
+                    Runtime.getRuntime().exec("tpt-touch-enabler 1");
+                } catch(Exception d) {
+                    Log.w(TAG, "Unable to enable Touch: "+d.getMessage());
+                }
+                showToast("Touchscreen Enabled");
+            }
+        }//TPT End
 
         // Shortcuts are invoked through Search+key, so intercept those here
         // Any printing key that is chorded with Search should be consumed

@@ -66,7 +66,7 @@ namespace android {
 static const size_t MAX_SLOTS = 32;
 
 // --- TPT Global vars ---
-int touch_screen_disabled = 0;
+//int touch_screen_disabled = 0;
 
 // --- Static Functions ---
 
@@ -2076,15 +2076,15 @@ void KeyboardInputMapper::process(const RawEvent* rawEvent) {
         mCurrentHidUsage = 0;
 
 	//TPT
-	if (rawEvent->code == 0x00d4 && rawEvent->value==0x00000001) {
-		if(touch_screen_disabled) {
-		     touch_screen_disabled = 0;
-		     ALOGD("TouchScreenDisabled enabled: %d",touch_screen_disabled);
-		} else {
-                     touch_screen_disabled = 1;
-		     ALOGD("TouchScreenDisabled disabled: %d",touch_screen_disabled);
-		}
-	}
+	// if (rawEvent->code == 0x00d4 && rawEvent->value==0x00000001) {
+	// 	if(touch_screen_disabled) {
+	// 	     touch_screen_disabled = 0;
+	// 	     ALOGD("TouchScreenDisabled enabled: %d",touch_screen_disabled);
+	// 	} else {
+ //                     touch_screen_disabled = 1;
+	// 	     ALOGD("TouchScreenDisabled disabled: %d",touch_screen_disabled);
+	// 	}
+	// }
 	//TPT End
 
         if (isKeyboardOrGamepadKey(scanCode)) {
@@ -5873,7 +5873,7 @@ void MultiTouchInputMapper::process(const RawEvent* rawEvent) {
     TouchInputMapper::process(rawEvent);
 
     //TPT
-    if(touch_screen_disabled) return;
+    // if(touch_screen_disabled) return;
     //TPT End
 
     mMultiTouchMotionAccumulator.process(rawEvent);
